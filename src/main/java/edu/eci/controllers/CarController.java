@@ -13,8 +13,7 @@ import java.util.UUID;
 @RequestMapping("/cars")
 public class CarController {
 
-    @ResponseBody
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping("/cars")
     public ResponseEntity<?> getCar(){
         throw new NotImplementedException();
     }
