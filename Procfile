@@ -1,0 +1,1 @@
+web: java -jar target/heroku-lab-1.0.jar
