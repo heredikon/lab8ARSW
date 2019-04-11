@@ -41,8 +41,8 @@ var app = (function () {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/newpoint', function (eventbody) {
                 var pointZ = JSON.parse(eventbody.body);
-                alert("yesMan" + pointZ);
-                //addPointToCanvas(pointX);
+               // alert("yesMan" + pointZ);
+                addPointToCanvas(pointZ);
                 
             });
         });
