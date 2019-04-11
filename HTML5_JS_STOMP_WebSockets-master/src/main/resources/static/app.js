@@ -1,3 +1,5 @@
+/* global addPointToCanvas, getMousePosition, connectAndSubscribe */
+
 var app = (function () {
 
     class Point{
@@ -38,9 +40,9 @@ var app = (function () {
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/newpoint', function (eventbody) {
-                var pointX = JSON.parse(eventbody.body);
-                alert("yesMan" + pointX);
-                addPointToCanvas(pointX)
+                var pointZ = JSON.parse(eventbody.body);
+                alert("yesMan" + pointZ);
+                //addPointToCanvas(pointX);
                 
             });
         });
@@ -62,10 +64,9 @@ var app = (function () {
             var pt=new Point(px,py);
             console.info("publishing point at "+pt);
             addPointToCanvas(pt);
-            console.log("p++++++++++++++++++++++++++++")
-            getMousePosition();
-            console.log("----------------------")
-            stompClient.send("/topic/newpoint",{},JSON.stringify(pt))
+            console.log("p++++++++++++++++++++++++++++");
+            console.log("----------------------");
+            stompClient.send("/topic/newpoint",{},JSON.stringify(pt));
 
             //publicar el evento
         },
