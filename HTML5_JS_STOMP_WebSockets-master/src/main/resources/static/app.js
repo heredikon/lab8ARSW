@@ -22,6 +22,7 @@ var app = (function () {
         ctx.stroke();
     };
 
+
     
     
     
@@ -43,7 +44,7 @@ var app = (function () {
         //subscribe to /topic/TOPICXX when connections succeed
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
-            stompClient.subscribe('/topic/newpoint' + '/'+ x, function (eventbody) {
+            stompClient.subscribe('/topic/newpoint.'+ x, function (eventbody) {
                 console.log(x);
                 var pointZ = JSON.parse(eventbody.body);
                // alert("yesMan" + pointZ);
@@ -61,7 +62,7 @@ var app = (function () {
         init: function () {
             let channel = "";
             var can = document.getElementById("canvas");
-            can.addEventListener("mousemove", function (evt) {
+            can.addEventListener("mousedown", function (evt) {
                 var coord = getMousePosition(evt);
                 
                 let px = coord.x;
@@ -85,7 +86,7 @@ var app = (function () {
             addPointToCanvas(pt);
             
             
-            stompClient.send("/topic/newpoint" + "/" + channel,{},JSON.stringify(pt));
+            stompClient.send("/app/newpoint." + channel,{},JSON.stringify(pt));
 
 
             //publicar el evento
